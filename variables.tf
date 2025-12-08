@@ -1,0 +1,29 @@
+variable "kops_cluster_config" {
+  description = "Configuration object for the kOps cluster"
+  type = object({
+    cluster_name         = string
+    kubernetes_version   = string
+    state_store          = string
+    vpc_id               = string
+    api_access_cidrs     = list(string)
+    master_instance_type = string
+    node_instance_type   = string
+    master_count         = number
+    node_count           = number
+    bucket_prefix        = string
+    admin_ssh_key_path   = string
+
+    load_balancer_type          = string
+    use_for_internal_api        = bool
+    cross_zone_load_balancing   = bool
+    allow_container_registry    = bool
+    enable_remote_node_identity = bool
+    rolling_update_skip         = bool
+    fail_on_drain_error         = bool
+    fail_on_validate            = bool
+    validate_count              = number
+    validate_skip               = bool
+    validate_timeout            = string
+    load_balancer_class         = string
+  })
+}
