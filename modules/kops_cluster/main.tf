@@ -1,9 +1,9 @@
-resource "aws_route53_zone" "private" {
-  name = "cluster.internal"  # any name you choose
-  vpc {
-    vpc_id = var.vpc_id
-  }
-}
+# resource "aws_route53_zone" "private" {
+#   name = "cluster.internal"  # any name you choose
+#   vpc {
+#     vpc_id = var.vpc_id
+#   }
+# }
 resource "kops_cluster" "cluster" {
   name               = var.cluster_name
   kubernetes_version = var.kubernetes_version
