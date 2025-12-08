@@ -1,5 +1,5 @@
 kops_cluster_config = {
-  cluster_name               = "cluster.internal"
+  cluster_name               = "cluster.k8s.local"
   kubernetes_version         = "1.27.10"
   vpc_id                     = "vpc-0522e88ec2d180989"
   state_store                = "s3://kops-state-store-bukcet"
@@ -23,6 +23,6 @@ kops_cluster_config = {
   fail_on_validate            = true
   validate_count              = 1
   validate_skip               = false
-  validate_timeout            = "40m"
+  validate_timeout            = "20m"
   load_balancer_class         = "Network"
 }
