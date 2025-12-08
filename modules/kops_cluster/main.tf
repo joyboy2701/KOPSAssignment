@@ -7,7 +7,7 @@ resource "aws_route53_zone" "private" {
 resource "kops_cluster" "cluster" {
   name               = var.cluster_name
   kubernetes_version = var.kubernetes_version
- dns_zone           = aws_route53_zone.private.name
+  dns_zone           = "k8s.local"   
 
   admin_ssh_key = file(var.admin_ssh_key_path)
 
@@ -64,7 +64,7 @@ resource "kops_cluster" "cluster" {
     }
 
     topology {
-      dns = "Private"
+      dns = "Public"
     }
   }
 
