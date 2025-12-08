@@ -1,7 +1,7 @@
 kops_cluster_config = {
   cluster_name               = "cluster.internal"
   kubernetes_version         = "1.27.10"
-  vpc_id                     = "vpc-08e8dbddba7a89ccd"
+  vpc_id                     = "vpc-0de2b7f2c265c2952"
   state_store                = "s3://kops-state-store-bukcet"
   admin_ssh_key_path         = "./kops-key.pub"
   api_access_cidrs           = ["0.0.0.0/0"]
