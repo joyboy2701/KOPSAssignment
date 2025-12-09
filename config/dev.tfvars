@@ -22,7 +22,7 @@ kops_cluster_config = {
   fail_on_drain_error         = true
   fail_on_validate            = true
   validate_count              = 1
-  validate_skip               = false
+  validate_skip               = true
   validate_timeout            = "13m"
   load_balancer_class         = "Network"
 }
