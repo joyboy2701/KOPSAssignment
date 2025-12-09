@@ -93,55 +93,55 @@ resource "kops_cluster" "cluster" {
 
 }
 
-resource "aws_iam_role" "kops_master_role" {
-  name = "${var.cluster_name}-master-role"
+# resource "aws_iam_role" "kops_master_role" {
+#   name = "${var.cluster_name}-master-role"
 
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [{
-      Action = "sts:AssumeRole"
-      Effect = "Allow"
-      Principal = {
-        Service = "ec2.amazonaws.com"
-      }
-    }]
-  })
-}
+#   assume_role_policy = jsonencode({
+#     Version = "2012-10-17"
+#     Statement = [{
+#       Action = "sts:AssumeRole"
+#       Effect = "Allow"
+#       Principal = {
+#         Service = "ec2.amazonaws.com"
+#       }
+#     }]
+#   })
+# }
 
-resource "aws_iam_role" "kops_node_role" {
-  name = "${var.cluster_name}-node-role"
+# resource "aws_iam_role" "kops_node_role" {
+#   name = "${var.cluster_name}-node-role"
 
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [{
-      Action = "sts:AssumeRole"
-      Effect = "Allow"
-      Principal = {
-        Service = "ec2.amazonaws.com"
-      }
-    }]
-  })
-}
+#   assume_role_policy = jsonencode({
+#     Version = "2012-10-17"
+#     Statement = [{
+#       Action = "sts:AssumeRole"
+#       Effect = "Allow"
+#       Principal = {
+#         Service = "ec2.amazonaws.com"
+#       }
+#     }]
+#   })
+# }
 
-resource "aws_iam_role_policy_attachment" "kops_master_ssm" {
-  role       = aws_iam_role.kops_master_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
-}
+# resource "aws_iam_role_policy_attachment" "kops_master_ssm" {
+#   role       = aws_iam_role.kops_master_role.name
+#   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+# }
 
-resource "aws_iam_role_policy_attachment" "kops_node_ssm" {
-  role       = aws_iam_role.kops_node_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
-}
+# resource "aws_iam_role_policy_attachment" "kops_node_ssm" {
+#   role       = aws_iam_role.kops_node_role.name
+#   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+# }
 
-resource "aws_iam_instance_profile" "kops_master_profile" {
-  name = "${var.cluster_name}-master-profile"
-  role = aws_iam_role.kops_master_role.name
-}
+# resource "aws_iam_instance_profile" "kops_master_profile" {
+#   name = "${var.cluster_name}-master-profile"
+#   role = aws_iam_role.kops_master_role.name
+# }
 
-resource "aws_iam_instance_profile" "kops_node_profile" {
-  name = "${var.cluster_name}-node-profile"
-  role = aws_iam_role.kops_node_role.name
-}
+# resource "aws_iam_instance_profile" "kops_node_profile" {
+#   name = "${var.cluster_name}-node-profile"
+#   role = aws_iam_role.kops_node_role.name
+# }
 
 
 resource "kops_instance_group" "control_plane" {
@@ -155,9 +155,9 @@ resource "kops_instance_group" "control_plane" {
   machine_type = var.master_instance_type
   subnets      = [each.value.id]
 
-  iam {
-    profile = aws_iam_instance_profile.kops_master_profile.arn
-  }
+  # iam {
+  #   profile = aws_iam_instance_profile.kops_master_profile.arn
+  # }
 }
 
 resource "kops_instance_group" "node" {
@@ -171,9 +171,9 @@ resource "kops_instance_group" "node" {
   machine_type = var.node_instance_type
   subnets      = [each.value.id]
 
-  iam {
-    profile = aws_iam_instance_profile.kops_node_profile.arn
-  }
+  # iam {
+  #   profile = aws_iam_instance_profile.kops_node_profile.arn
+  # }
 }
 
 resource "kops_cluster_updater" "updater" {
