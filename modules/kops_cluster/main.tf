@@ -1,13 +1,14 @@
-# resource "aws_route53_zone" "private" {
-#   name = "cluster.internal"  # any name you choose
-#   vpc {
-#     vpc_id = var.vpc_id
-#   }
-# }
+resource "aws_route53_zone" "private" {
+  name = "cluster.internal"  # any name you choose
+  vpc {
+    vpc_id = var.vpc_id
+  }
+}
 resource "kops_cluster" "cluster" {
   name               = var.cluster_name
   kubernetes_version = var.kubernetes_version
-  dns_zone           = "k8s.local"   
+  # dns_zone           = "k8s.local"   
+  dns_zone=aws_route53_zone.private.name
 
   admin_ssh_key = file(var.admin_ssh_key_path)
 
@@ -64,7 +65,7 @@ resource "kops_cluster" "cluster" {
     }
 
     topology {
-      dns = "Public"
+      dns = "Private"
     }
   }
 
