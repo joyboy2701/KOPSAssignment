@@ -55,12 +55,9 @@ variable "load_balancer_type"{
 variable "use_for_internal_api"{
   type = bool
 }
-variable "cross_zone_load_balancing"{
-  type = bool
-}
-variable "allow_container_registry"{
-  type = bool
-}
+# variable "cross_zone_load_balancing"{
+#   type = bool
+# }
 variable "enable_remote_node_identity"{
   type = bool
 }

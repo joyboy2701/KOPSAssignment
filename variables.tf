@@ -15,8 +15,7 @@ variable "kops_cluster_config" {
 
     load_balancer_type          = string
     use_for_internal_api        = bool
-    cross_zone_load_balancing   = bool
-    allow_container_registry    = bool
+    # cross_zone_load_balancing   = bool
     enable_remote_node_identity = bool
     rolling_update_skip         = bool
     fail_on_drain_error         = bool
