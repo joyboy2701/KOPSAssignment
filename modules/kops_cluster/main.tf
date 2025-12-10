@@ -18,7 +18,7 @@ resource "kops_cluster" "cluster" {
     load_balancer {
       class                     = var.load_balancer_class#"Network"
       type                      = var.load_balancer_type #Public ,Private,Internal
-      # cross_zone_load_balancing = var.cross_zone_load_balancing #true
+      cross_zone_load_balancing = var.cross_zone_load_balancing #true
       use_for_internal_api      = var.use_for_internal_api #false
       idle_timeout_seconds      = 0
     }
@@ -32,9 +32,9 @@ resource "kops_cluster" "cluster" {
     base = "${var.state_store}/${var.cluster_name}"
   }
 
-  # iam {
-  #   allow_container_registry = var.allow_container_registry #true
-  # }
+  iam {
+    allow_container_registry = var.allow_container_registry #true
+  }
 
   networking {
     network_id = data.aws_vpc.selected.id
@@ -228,7 +228,7 @@ resource "null_resource" "validate_cluster" {
   depends_on = [null_resource.export_kubeconfig]
 
   provisioner "local-exec" {
-    command = "kops validate cluster --wait 13m"
+    command = "kops validate cluster --state s3://kops-state-store-bukcet --wait 13m"
   }
 }
 
