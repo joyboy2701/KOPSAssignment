@@ -200,11 +200,11 @@ resource "kops_cluster_updater" "updater" {
     validate_count      = var.validate_count
   }
 
-  # validate {
-  #   skip    = var.validate_skip    #false
-  #   timeout = var.validate_timeout #"30m"
+  validate {
+    skip    = var.validate_skip    #false
+    timeout = var.validate_timeout #"30m"
 
-  # }
+  }
   depends_on = [kops_cluster.cluster,kops_instance_group.node,kops_instance_group.control_plane]
 }
 

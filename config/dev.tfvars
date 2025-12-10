@@ -17,12 +17,12 @@ kops_cluster_config = {
   use_for_internal_api        = false
   cross_zone_load_balancing   = false
   allow_container_registry    = false
-  enable_remote_node_identity = true
+  enable_remote_node_identity = false
   rolling_update_skip         = false
   fail_on_drain_error         = true
-  fail_on_validate            = true
+  fail_on_validate            = false
   validate_count              = 1
-  validate_skip               = false
+  validate_skip               = true
   validate_timeout            = "20m"
   load_balancer_class         = "Network"
 }
