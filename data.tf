@@ -1,7 +1,13 @@
+data "aws_vpc" "selected" {
+  filter {
+    name   = "tag:Name"
+    values = [var.kops_cluster_config.vpc_name]
+  }
+}
 data "aws_subnets" "public" {
   filter {
     name   = "vpc-id"
-    values = [var.kops_cluster_config.vpc_id]
+     values = [data.aws_vpc.selected.id]  # ✅ Use the VPC ID we just found
   }
 
   tags = {
@@ -13,7 +19,7 @@ data "aws_subnets" "public" {
 data "aws_subnets" "private" {
   filter {
     name   = "vpc-id"
-    values = [var.kops_cluster_config.vpc_id]
+  values = [data.aws_vpc.selected.id]  # ✅ Use the VPC ID we just found
   }
 
   tags = {

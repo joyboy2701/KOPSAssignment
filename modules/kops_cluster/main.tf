@@ -1,7 +1,7 @@
 resource "aws_route53_zone" "private" {
   name = "cluster.internal"  # any name you choose
   vpc {
-    vpc_id = var.vpc_id
+    vpc_id = data.aws_vpc.selected.id
   }
 }
 resource "kops_cluster" "cluster" {
@@ -18,7 +18,7 @@ resource "kops_cluster" "cluster" {
     load_balancer {
       class                     = var.load_balancer_class#"Network"
       type                      = var.load_balancer_type #Public ,Private,Internal
-      cross_zone_load_balancing = var.cross_zone_load_balancing #true
+      # cross_zone_load_balancing = var.cross_zone_load_balancing #true
       use_for_internal_api      = var.use_for_internal_api #false
       idle_timeout_seconds      = 0
     }
@@ -37,7 +37,7 @@ resource "kops_cluster" "cluster" {
   # }
 
   networking {
-    network_id = var.vpc_id
+    network_id = data.aws_vpc.selected.id
 
     dynamic "subnet" {
       for_each = var.private_subnets

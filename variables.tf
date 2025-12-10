@@ -4,7 +4,7 @@ variable "kops_cluster_config" {
     cluster_name         = string
     kubernetes_version   = string
     state_store          = string
-    vpc_id               = string
+    vpc_name              = string
     api_access_cidrs     = list(string)
     master_instance_type = string
     node_instance_type   = string

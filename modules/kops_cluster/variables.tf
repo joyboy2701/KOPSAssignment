@@ -4,7 +4,11 @@ variable "kubernetes_version" {}
 
 variable "state_store" {}
 
-variable "vpc_id" {}
+variable "vpc_name" {
+  description = "The Name tag of the VPC to look up"
+  type        = string
+  default     = "my-application-vpc" # Replace with your actual VPC Name
+}
 
 variable "private_subnets" {
   type = map(object({
