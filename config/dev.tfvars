@@ -20,9 +20,9 @@ kops_cluster_config = {
   enable_remote_node_identity = true
   rolling_update_skip         = false
   fail_on_drain_error         = true
-  fail_on_validate            = true
+  fail_on_validate            = false
   validate_count              = 1
-  validate_skip               = true
-  validate_timeout            = "13m"
+  validate_skip               = false
+  validate_timeout            = "20m"
   load_balancer_class         = "Network"
 }
