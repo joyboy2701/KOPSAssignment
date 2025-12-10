@@ -32,9 +32,9 @@ resource "kops_cluster" "cluster" {
     base = "${var.state_store}/${var.cluster_name}"
   }
 
-  iam {
-    allow_container_registry = var.allow_container_registry #true
-  }
+  # iam {
+  #   allow_container_registry = var.allow_container_registry #true
+  # }
 
   networking {
     network_id = data.aws_vpc.selected.id
