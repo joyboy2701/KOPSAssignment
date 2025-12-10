@@ -176,6 +176,14 @@ resource "kops_instance_group" "node" {
   # }
 }
 
+resource "null_resource" "wait_for_nlb" {
+  provisioner "local-exec" {
+    command = "echo 'Waiting 5 minutes for NLB and DNS to stabilize...' && sleep 300"
+  }
+  depends_on = [ kops_cluster.cluster ]
+}
+
+
 resource "kops_cluster_updater" "updater" {
   cluster_name = kops_cluster.cluster.id
 
@@ -197,6 +205,7 @@ resource "kops_cluster_updater" "updater" {
     timeout = var.validate_timeout #"30m"
 
   }
+  depends_on = [null_resource.export_kubeconfig]
 }
 
 resource "null_resource" "export_kubeconfig" {
@@ -213,6 +222,6 @@ resource "null_resource" "export_kubeconfig" {
     EOT
   }
 
-  depends_on = [kops_cluster_updater.updater]
+  depends_on = [ null_resource.wait_for_nlb ]
 }
 
