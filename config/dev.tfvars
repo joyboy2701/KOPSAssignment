@@ -14,7 +14,7 @@ kops_cluster_config = {
 
 
   load_balancer_type          = "Internal"
-  use_for_internal_api        = false
+  use_for_internal_api        = true
   # cross_zone_load_balancing   = false
   # allow_container_registry    = true
   enable_remote_node_identity = false

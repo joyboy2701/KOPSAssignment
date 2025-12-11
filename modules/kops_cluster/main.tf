@@ -7,7 +7,7 @@ resource "aws_route53_zone" "private" {
 resource "kops_cluster" "cluster" {
   name               = var.cluster_name
   kubernetes_version = var.kubernetes_version
-  dns_zone=aws_route53_zone.private.name
+  dns_zone=aws_route53_zone.private.id
 
   admin_ssh_key = file(var.admin_ssh_key_path)
 
