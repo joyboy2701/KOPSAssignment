@@ -12,6 +12,7 @@ variable "kops_cluster_config" {
     node_count           = number
     bucket_prefix        = string
     admin_ssh_key_path   = string
+    vpc_id=string
 
     load_balancer_type          = string
     use_for_internal_api        = bool

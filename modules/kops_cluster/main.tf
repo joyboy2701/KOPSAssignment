@@ -1,7 +1,9 @@
 resource "aws_route53_zone" "private" {
   name = "cluster.internal"  # any name you choose
   vpc {
-    vpc_id = data.aws_vpc.selected.id
+    # vpc_id = data.aws_vpc.selected.id
+    vpc_id = var.vpc_id
+
   }
 }
 resource "kops_cluster" "cluster" {
@@ -33,7 +35,8 @@ resource "kops_cluster" "cluster" {
 
 
   networking {
-    network_id = data.aws_vpc.selected.id
+    # network_id = data.aws_vpc.selected.id
+    network_id=var.vpc_id
 
     dynamic "subnet" {
       for_each = var.private_subnets

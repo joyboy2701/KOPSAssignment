@@ -46,7 +46,9 @@ variable "admin_ssh_key_path" {
   description = "Path to the admin public SSH key to use for the cluster"
   type        = string
 }
-
+variable "vpc_id"{
+  type = string
+}
 
 
 variable "load_balancer_type"{

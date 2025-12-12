@@ -8,5 +8,5 @@ terraform {
 }
 
 provider "kops" {
-  state_store = var.state_store
+  state_store = var.kops_cluster_config.state_store
 }
