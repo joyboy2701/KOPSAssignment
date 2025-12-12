@@ -1,3 +1,11 @@
+terraform {
+  required_providers {
+    kops = {
+      source  = "terraform-kops/kops"
+      version = "~> 1.28.7"
+    }
+  }
+}
 resource "aws_route53_zone" "private" {
   name = "cluster.internal"  # any name you choose
   vpc {
