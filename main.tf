@@ -1,5 +1,9 @@
 module "kops_cluster" {
   source = "./modules/kops_cluster"
+  providers = {
+    kops = kops
+    aws  = aws
+  }
 
   cluster_name                = var.kops_cluster_config.cluster_name
   kubernetes_version          = var.kops_cluster_config.kubernetes_version
@@ -14,7 +18,7 @@ module "kops_cluster" {
   master_count                = var.kops_cluster_config.master_count
   node_count                  = var.kops_cluster_config.node_count
   admin_ssh_key_path          = var.kops_cluster_config.admin_ssh_key_path
-  
+
   load_balancer_type          = var.kops_cluster_config.load_balancer_type
   use_for_internal_api        = var.kops_cluster_config.use_for_internal_api
   enable_remote_node_identity = var.kops_cluster_config.enable_remote_node_identity
