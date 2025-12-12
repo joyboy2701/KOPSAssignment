@@ -114,12 +114,12 @@ resource "kops_instance_group" "node" {
   subnets      = [each.value.id]
 }
 
-resource "null_resource" "wait_for_nlb" {
-  provisioner "local-exec" {
-    command = "echo 'Waiting 5 minutes for NLB and DNS to stabilize...' && sleep 180"
-  }
-  depends_on = [ kops_cluster_updater.updater]
-}
+# resource "null_resource" "wait_for_nlb" {
+#   provisioner "local-exec" {
+#     command = "echo 'Waiting 5 minutes for NLB and DNS to stabilize...' && sleep 180"
+#   }
+#   depends_on = [ kops_cluster_updater.updater]
+# }
 
 
 resource "kops_cluster_updater" "updater" {
@@ -160,7 +160,7 @@ resource "null_resource" "export_kubeconfig" {
     EOT
   }
 
-  depends_on = [ null_resource.wait_for_nlb ]
+  # depends_on = [ null_resource.wait_for_nlb ]
 }
 resource "null_resource" "validate_cluster" {
   depends_on = [null_resource.export_kubeconfig]

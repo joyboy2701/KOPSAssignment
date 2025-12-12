@@ -2,7 +2,7 @@ terraform {
   required_providers {
     kops = {
       source  = "terraform-kops/kops"
-      version = "1.34.1"
+      version = "1.27.1"
     }
   }
 }
