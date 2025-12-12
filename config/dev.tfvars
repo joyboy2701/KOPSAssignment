@@ -1,6 +1,6 @@
 kops_cluster_config = {
   cluster_name               = "cluster.internal"
-  kubernetes_version         = "1.27.10"
+  kubernetes_version         = "1.34.2"
   vpc_name                    = "my-vpc"
   state_store                = "s3://kops-state-store-bukcet"
   admin_ssh_key_path         = "./kops-key.pub"
@@ -14,7 +14,7 @@ kops_cluster_config = {
 
 
   load_balancer_type          = "Internal"
-  use_for_internal_api        = true
+  use_for_internal_api        = false
   # cross_zone_load_balancing   = false
   # allow_container_registry    = true
   enable_remote_node_identity = false
