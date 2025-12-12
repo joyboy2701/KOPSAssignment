@@ -1,13 +1,3 @@
-terraform {
-  required_providers {
-    kops = {
-      source = "terraform-kops/kops"
-    }
-    aws = {
-      source = "hashicorp/aws"
-    }
-  }
-}
 resource "aws_route53_zone" "private" {
   name = "cluster.internal"  # any name you choose
   vpc {

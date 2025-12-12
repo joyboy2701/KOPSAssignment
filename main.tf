@@ -1,8 +1,7 @@
 module "kops_cluster" {
   source = "./modules/kops_cluster"
   providers = {
-    kops = kops
-    aws  = aws
+    required_providers=kops
   }
 
   cluster_name                = var.kops_cluster_config.cluster_name
