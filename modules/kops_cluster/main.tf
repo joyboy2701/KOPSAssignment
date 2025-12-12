@@ -3,6 +3,9 @@ terraform {
     kops = {
       source = "terraform-kops/kops"
     }
+    aws = {
+      source = "hashicorp/aws"
+    }
   }
 }
 resource "aws_route53_zone" "private" {
