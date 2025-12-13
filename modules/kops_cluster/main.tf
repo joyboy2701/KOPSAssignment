@@ -1,3 +1,13 @@
+terraform {
+  required_providers {
+    kops = {
+      source  = "terraform-kops/kops"
+      version = "1.28.7"
+      
+    }
+    
+  }
+}
 resource "aws_route53_zone" "private" {
   name = "cluster.internal"  # any name you choose
   vpc {
@@ -121,7 +131,8 @@ resource "null_resource" "wait_for_nlb" {
   provisioner "local-exec" {
     command = "echo 'Waiting 3 minutes for NLB and DNS to stabilize...' && sleep 180"
   }
-  depends_on = [ kops_cluster_updater.updater]
+  # depends_on = [ kops_cluster_updater.updater]
+  depends_on = [kops_cluster.cluster,kops_instance_group.node,kops_instance_group.control_plane,aws_route53_zone.private]
 }
 
 
@@ -146,7 +157,8 @@ resource "kops_cluster_updater" "updater" {
     timeout = var.validate_timeout #"30m"
 
   }
-  depends_on = [kops_cluster.cluster,kops_instance_group.node,kops_instance_group.control_plane]
+  # depends_on = [kops_cluster.cluster,kops_instance_group.node,kops_instance_group.control_plane]
+  depends_on = [ null_resource.export_kubeconfig ]
 }
 
 resource "null_resource" "export_kubeconfig" {

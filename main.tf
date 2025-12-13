@@ -1,8 +1,6 @@
 module "kops_cluster" {
   source = "./modules/kops_cluster"
-  providers = {
-    required_providers=kops
-  }
+  
 
   cluster_name                = var.kops_cluster_config.cluster_name
   kubernetes_version          = var.kops_cluster_config.kubernetes_version
