@@ -18,11 +18,5 @@ kops_cluster_config = {
   # cross_zone_load_balancing   = false
   # allow_container_registry    = true
   enable_remote_node_identity = false
-  rolling_update_skip         = false
-  fail_on_drain_error         = true
-  fail_on_validate            = true
-  validate_count              = 1
-  validate_skip               = true
-  validate_timeout            = "20m"
   load_balancer_class         = "Network"
 }

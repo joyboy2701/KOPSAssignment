@@ -18,12 +18,7 @@ variable "kops_cluster_config" {
     use_for_internal_api        = bool
     # cross_zone_load_balancing   = bool
     enable_remote_node_identity = bool
-    rolling_update_skip         = bool
-    fail_on_drain_error         = bool
-    fail_on_validate            = bool
-    validate_count              = number
-    validate_skip               = bool
-    validate_timeout            = string
+ 
     load_balancer_class         = string
   })
 }

@@ -1,17 +1,6 @@
-terraform {
-  required_providers {
-    kops = {
-      source  = "terraform-kops/kops"
-      version = "1.28.7"
-      
-    }
-    
-  }
-}
 resource "aws_route53_zone" "private" {
   name = "cluster.internal"  # any name you choose
   vpc {
-    # vpc_id = data.aws_vpc.selected.id
     vpc_id = var.vpc_id
 
   }
@@ -44,7 +33,6 @@ resource "kops_cluster" "cluster" {
 
 
   networking {
-    # network_id = data.aws_vpc.selected.id
     network_id=var.vpc_id
 
     dynamic "subnet" {
@@ -142,7 +130,6 @@ resource "kops_cluster_updater" "updater" {
     control_plane = format("%#v", { for k, v in kops_instance_group.control_plane : k => v.revision })
     node = format("%#v", { for k, v in kops_instance_group.node : k => v.revision })
   }
-
 
    depends_on = [kops_cluster.cluster,kops_instance_group.node,kops_instance_group.control_plane]
 }

@@ -63,24 +63,7 @@ variable "use_for_internal_api"{
 variable "enable_remote_node_identity"{
   type = bool
 }
-variable "rolling_update_skip"{
-  type = bool
-}
-variable "fail_on_drain_error"{
-  type = bool
-}
-variable "fail_on_validate"{
-  type = bool
-}
-variable "validate_count"{
-  type = number
-}
-variable "validate_skip"{
-  type = bool
-}
-variable "validate_timeout"{
-  type = string
-}
+
 variable "load_balancer_class"{
   type =string
 }
