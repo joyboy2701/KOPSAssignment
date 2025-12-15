@@ -46,24 +46,24 @@ variable "admin_ssh_key_path" {
   description = "Path to the admin public SSH key to use for the cluster"
   type        = string
 }
-variable "vpc_id"{
+variable "vpc_id" {
   type = string
 }
 
 
-variable "load_balancer_type"{
+variable "load_balancer_type" {
   type = string
 }
-variable "use_for_internal_api"{
+variable "use_for_internal_api" {
   type = bool
 }
 # variable "cross_zone_load_balancing"{
 #   type = bool
 # }
-variable "enable_remote_node_identity"{
+variable "enable_remote_node_identity" {
   type = bool
 }
 
-variable "load_balancer_class"{
-  type =string
+variable "load_balancer_class" {
+  type = string
 }

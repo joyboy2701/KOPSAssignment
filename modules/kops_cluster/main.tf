@@ -1,5 +1,5 @@
 resource "aws_route53_zone" "private" {
-  name = "cluster.internal"  # any name you choose
+  name = "cluster.internal" # any name you choose
   vpc {
     vpc_id = var.vpc_id
 
@@ -8,7 +8,7 @@ resource "aws_route53_zone" "private" {
 resource "kops_cluster" "cluster" {
   name               = var.cluster_name
   kubernetes_version = var.kubernetes_version
-  dns_zone=aws_route53_zone.private.id
+  dns_zone           = aws_route53_zone.private.id
 
   admin_ssh_key = file(var.admin_ssh_key_path)
 
@@ -16,10 +16,10 @@ resource "kops_cluster" "cluster" {
     access = var.api_access_cidrs
 
     load_balancer {
-      class                     = var.load_balancer_class#"Network"
-      type                      = var.load_balancer_type #Public ,Private,Internal
-      use_for_internal_api      = var.use_for_internal_api #false
-      idle_timeout_seconds      = 0
+      class                = var.load_balancer_class  #"Network"
+      type                 = var.load_balancer_type   #Public ,Private,Internal
+      use_for_internal_api = var.use_for_internal_api #false
+      idle_timeout_seconds = 0
     }
   }
 
@@ -33,7 +33,7 @@ resource "kops_cluster" "cluster" {
 
 
   networking {
-    network_id=var.vpc_id
+    network_id = var.vpc_id
 
     dynamic "subnet" {
       for_each = var.private_subnets
@@ -118,7 +118,7 @@ resource "null_resource" "wait_for_nlb" {
   provisioner "local-exec" {
     command = "echo 'Waiting 3 minutes for NLB and DNS to stabilize...' && sleep 180"
   }
-  depends_on = [ kops_cluster_updater.updater]
+  depends_on = [kops_cluster_updater.updater]
 }
 
 
@@ -128,10 +128,10 @@ resource "kops_cluster_updater" "updater" {
   keepers = {
     cluster       = kops_cluster.cluster.revision
     control_plane = format("%#v", { for k, v in kops_instance_group.control_plane : k => v.revision })
-    node = format("%#v", { for k, v in kops_instance_group.node : k => v.revision })
+    node          = format("%#v", { for k, v in kops_instance_group.node : k => v.revision })
   }
 
-   depends_on = [kops_cluster.cluster,kops_instance_group.node,kops_instance_group.control_plane]
+  depends_on = [kops_cluster.cluster, kops_instance_group.node, kops_instance_group.control_plane]
 }
 
 resource "null_resource" "export_kubeconfig" {
@@ -151,7 +151,7 @@ resource "null_resource" "export_kubeconfig" {
     EOT
   }
 
-  depends_on = [ null_resource.wait_for_nlb ]
+  depends_on = [null_resource.wait_for_nlb]
 }
 resource "null_resource" "validate_cluster" {
   depends_on = [null_resource.export_kubeconfig]

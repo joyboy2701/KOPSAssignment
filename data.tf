@@ -7,7 +7,7 @@ data "aws_vpc" "selected" {
 data "aws_subnets" "public" {
   filter {
     name   = "vpc-id"
-     values = [data.aws_vpc.selected.id]  # ✅ Use the VPC ID we just found
+    values = [data.aws_vpc.selected.id] # ✅ Use the VPC ID we just found
   }
 
   tags = {
@@ -19,7 +19,7 @@ data "aws_subnets" "public" {
 data "aws_subnets" "private" {
   filter {
     name   = "vpc-id"
-  values = [data.aws_vpc.selected.id]  # ✅ Use the VPC ID we just found
+    values = [data.aws_vpc.selected.id] # ✅ Use the VPC ID we just found
   }
 
   tags = {

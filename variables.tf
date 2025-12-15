@@ -4,7 +4,7 @@ variable "kops_cluster_config" {
     cluster_name         = string
     kubernetes_version   = string
     state_store          = string
-    vpc_name              = string
+    vpc_name             = string
     api_access_cidrs     = list(string)
     master_instance_type = string
     node_instance_type   = string
@@ -14,11 +14,11 @@ variable "kops_cluster_config" {
     admin_ssh_key_path   = string
     # vpc_id=string
 
-    load_balancer_type          = string
-    use_for_internal_api        = bool
+    load_balancer_type   = string
+    use_for_internal_api = bool
     # cross_zone_load_balancing   = bool
     enable_remote_node_identity = bool
- 
-    load_balancer_class         = string
+
+    load_balancer_class = string
   })
 }

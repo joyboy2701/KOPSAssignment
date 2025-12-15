@@ -12,14 +12,14 @@ vpc = {
   public_availability_zones  = ["us-east-1a"]
   private_availability_zones = ["us-east-1a"]
 
-  public_subnet_name         = ["public-subnet-1"]
-  private_subnet_name        = ["k8s-private-subnet-1"]
-  route_destination          = "0.0.0.0/0"
-  nat_gateway                = "k8s-nat"
-  route_table_public         = "k8s-public-rt"
-  route_table_private        = "k8s-private-rt"
-  cidr_block                 = "0.0.0.0/0"
-  eip_name                   = "nat-eip"
+  public_subnet_name  = ["public-subnet-1"]
+  private_subnet_name = ["k8s-private-subnet-1"]
+  route_destination   = "0.0.0.0/0"
+  nat_gateway         = "k8s-nat"
+  route_table_public  = "k8s-public-rt"
+  route_table_private = "k8s-private-rt"
+  cidr_block          = "0.0.0.0/0"
+  eip_name            = "nat-eip"
 }
 
 # ------------------------------
