@@ -145,18 +145,18 @@ resource "kops_cluster_updater" "updater" {
     node = format("%#v", { for k, v in kops_instance_group.node : k => v.revision })
   }
 
-  rolling_update {
-    skip                = var.rolling_update_skip  #false
-    fail_on_drain_error = var.fail_on_validate     #true
-    fail_on_validate    = var.fail_on_validate     #true
-    validate_count      = var.validate_count
-  }
+  # rolling_update {
+  #   skip                = var.rolling_update_skip  #false
+  #   fail_on_drain_error = var.fail_on_validate     #true
+  #   fail_on_validate    = var.fail_on_validate     #true
+  #   validate_count      = var.validate_count
+  # }aasas
 
-  validate {
-    skip    = var.validate_skip    #false
-    timeout = var.validate_timeout #"30m"
+  # validate {
+  #   skip    = var.validate_skip    #false
+  #   timeout = var.validate_timeout #"30m"
 
-  }
+  # }
   # depends_on = [kops_cluster.cluster,kops_instance_group.node,kops_instance_group.control_plane]
   depends_on = [ null_resource.export_kubeconfig ]
 }
