@@ -144,6 +144,9 @@ resource "null_resource" "export_kubeconfig" {
       export KOPS_STATE_STORE="${var.state_store}"
       export KOPS_CLUSTER_NAME="${var.cluster_name}"
       kops export kubecfg --admin
+      cd KOPSAssignment/.kube
+      chown ec2-user:ec2-user config
+      export KUBECONFIG=config
       echo "Kubeconfig exported to ~/.kube/config"
     EOT
   }
